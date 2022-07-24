@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	Mcts "github.com/PitterGao/MCTS"
 	"github.com/fatih/color"
 	"log"
 	"time"
@@ -17,16 +16,6 @@ type Game struct {
 	Ai1Handler    func(*State) ChessMove `json:"ai_1_handler,omitempty"`
 	Ai2Handler    func(*State) ChessMove `json:"ai_2_handler,omitempty"`
 }
-
-func Ai1Handler(s *State) ChessMove {
-	move := Mcts.AI(s)
-	return move
-}
-
-//func Ai2Handler(s *State) ChessMove {
-//	move := AI(s)
-//	return move
-//}
 
 func NewGame(currentPlayer int) (*Game, error) {
 	if currentPlayer != -1 && currentPlayer != 1 {
