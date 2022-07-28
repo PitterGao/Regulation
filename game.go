@@ -102,7 +102,12 @@ func (g *Game) Start(isShow bool) [][]byte {
 	fmt.Print("\x1b7") // 保存光标位置 保存光标和Attrs <ESC> 7
 	for g.CurrentState.GameOver() == 0 {
 		var err error
+		
+		t := time.Now()
 		move := g.GetMove(g.CurrentState)
+		elapsed := time.Now().Sub(t)
+		fmt.Println("该函数执行完成耗时：", elapsed)
+		
 		if move.Equal(ChessMove{}) {
 			g.CurrentState, _ = g.CurrentState.RandomMove()
 		} else {
